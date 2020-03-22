@@ -30,6 +30,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length > 0) {
+            Solver.limit = Integer.parseInt(args[0]);
+        }
         reader = new BufferedReader(new InputStreamReader(new FileInputStream("in.txt")));
         writer = new PrintWriter("out.txt");
         banana();

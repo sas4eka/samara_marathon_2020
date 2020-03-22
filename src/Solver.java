@@ -1,4 +1,5 @@
 public class Solver {
+    static public int limit = 100_000;
 
     static Answer trivial(Input in) {
         Answer ans = new Answer(in);
@@ -16,7 +17,6 @@ public class Solver {
         Input in = ans.in;
         long best = ans.getScore();
         boolean moar = true;
-        long limit = 100;
         int cnt = 0;
         while (moar) {
             cnt++;
