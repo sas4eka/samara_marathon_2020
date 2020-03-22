@@ -5,16 +5,16 @@ import java.util.List;
 public class Answer {
     Input in;
     private int[] colors;
-    private List<List<Point>> pointsByColor;
+    private List<Cluster> clusters;
     private int[] scoreByColor;
     long score;
 
     public Answer(Input in) {
         this.in = in;
         colors = new int[in.n];
-        pointsByColor = new ArrayList<>();
+        clusters = new ArrayList<>();
         for (int color = 0; color < in.k; color++) {
-            pointsByColor.add(new ArrayList<>());
+            clusters.add(new Cluster(color));
         }
     }
 
@@ -22,14 +22,10 @@ public class Answer {
         return colors;
     }
 
-    static int dist(Point p1, Point p2) {
-        return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
-    }
-
     void initColor(int i, int c) {
         //should call exactly once
         colors[i] = c;
-        pointsByColor.get(c).add(in.points.get(i));
+        clusters.get(c).add(in.points.get(i));
     }
 
     void swap(int i, int j) {
@@ -39,12 +35,12 @@ public class Answer {
         score -= scoreByColor[cj];
         Point pi = in.points.get(i);
         Point pj = in.points.get(j);
-        pointsByColor.get(ci).remove(pi);
-        pointsByColor.get(cj).remove(pj);
+        clusters.get(ci).remove(pi);
+        clusters.get(cj).remove(pj);
         colors[i] = cj;
         colors[j] = ci;
-        pointsByColor.get(ci).add(pj);
-        pointsByColor.get(cj).add(pi);
+        clusters.get(ci).add(pj);
+        clusters.get(cj).add(pi);
         scoreByColor[ci] = getColorScore(ci);
         scoreByColor[cj] = getColorScore(cj);
         score += scoreByColor[ci];
@@ -52,19 +48,7 @@ public class Answer {
     }
 
     int getColorScore(int color) {
-        List<Point> pts = pointsByColor.get(color);
-        int mn = 1_000_000_000;
-        for (int i = 0; i < pts.size(); i++) {
-            Point p = pts.get(i);
-            for (int j = i + 1; j < pts.size(); j++) {
-                Point other = pts.get(j);
-                int d = dist(p, other);
-                if (d < mn) {
-                    mn = d;
-                }
-            }
-        }
-        return mn;
+        return clusters.get(color).getScore();
     }
 
     long getScore() {
