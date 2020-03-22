@@ -1,3 +1,5 @@
+src/META-INF/
 .idea/
 out/
 task.iml
+out.txt
