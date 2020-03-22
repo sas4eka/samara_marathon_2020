@@ -5,7 +5,7 @@ public class Solver {
         int cnt = in.n / in.k;
         for (int color = 0; color < in.k; color++) {
             for (int q = 0; q < cnt; q++) {
-                ans.setColor(color * cnt + q, color);
+                ans.initColor(color * cnt + q, color);
             }
         }
         return ans;
@@ -16,7 +16,7 @@ public class Solver {
         Input in = ans.in;
         long best = ans.getScore();
         boolean moar = true;
-        long limit = 1000;
+        long limit = 100;
         int cnt = 0;
         while (moar) {
             cnt++;
