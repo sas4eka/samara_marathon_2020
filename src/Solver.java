@@ -16,7 +16,7 @@ public class Solver {
         Input in = ans.in;
         long best = ans.getScore();
         boolean moar = true;
-        long limit = 1000_000;
+        long limit = 100;
         int cnt = 0;
         while (moar) {
             cnt++;
