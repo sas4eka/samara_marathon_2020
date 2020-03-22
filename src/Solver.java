@@ -30,7 +30,8 @@ public class Solver {
                     ans.swap(i, j);
                     long curr = ans.getScore();
                     if (curr > best) {
-                        System.out.println(in.testName + " climb " + cnt + ": " + best + " -> " + curr);
+                        System.out.println(in.testName + " climb " + cnt + ": " + best + " -> " + curr
+                                + " at " + (System.currentTimeMillis() - start) + " ms");
                         best = curr;
                         moar = true;
                     } else {
