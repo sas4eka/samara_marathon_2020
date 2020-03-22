@@ -37,10 +37,10 @@ public class Main {
         writer.close();
     }
 
-    static Input readInput() throws IOException {
+    static Input readInput(String testName) throws IOException {
         int n = nextInt();
         int k = nextInt();
-        Input in = new Input(n, k);
+        Input in = new Input(testName, n, k);
         for (int i = 0; i < n; i++) {
             int x = nextInt();
             int y = nextInt();
@@ -51,7 +51,7 @@ public class Main {
     }
 
     static void printAnswer(Answer ans) {
-        for (int color : ans.colors) {
+        for (int color : ans.getColors()) {
             char c = (char) ('A' + color);
             writer.print(c);
         }
@@ -61,7 +61,7 @@ public class Main {
     static long totalScore = 0;
 
     static void processTest(String testName) throws IOException {
-        Input in = readInput();
+        Input in = readInput(testName);
         //Renderer.render(testName, in.points);
         Answer ans = Solver.solve(in);
         long score = ans.getScore();
