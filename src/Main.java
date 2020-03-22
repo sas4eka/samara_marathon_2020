@@ -44,7 +44,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             int x = nextInt();
             int y = nextInt();
-            Point p = new Point(i, x, y);
+            Point p = new Point(x, y);
             in.points.add(p);
         }
         return in;
@@ -58,18 +58,26 @@ public class Main {
         writer.println();
     }
 
+    static long totalScore = 0;
+
     static void processTest(String testName) throws IOException {
         Input in = readInput();
-        Renderer.render(testName, in.points);
+        //Renderer.render(testName, in.points);
         Answer ans = Solver.solve(in);
+        long score = ans.getScore();
+        System.out.println(testName + " score: " + score);
+        totalScore += score;
         printAnswer(ans);
     }
 
     static void banana() throws IOException {
+        long start = System.currentTimeMillis();
         int t = nextInt();
         for (int tst = 1; tst <= t; tst++) {
             writer.print("Case #" + tst + ": ");
             processTest("test" + tst);
         }
+        System.out.println("Total score: " + totalScore / t);
+        System.out.println("Time: " + (System.currentTimeMillis() - start) + " ms");
     }
 }
