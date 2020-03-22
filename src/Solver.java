@@ -1,5 +1,5 @@
 public class Solver {
-    static public int limit = 100_000;
+    static public int limit = 100;
 
     static Answer trivial(Input in) {
         Answer ans = new Answer(in);
