@@ -33,10 +33,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         if (args.length > 0) {
-            Solver.limit = Integer.parseInt(args[0]);
+            Solver.burn_limit = Integer.parseInt(args[0]);
         }
         if (args.length > 1) {
-            currentAnswer = new BufferedReader(new InputStreamReader(new FileInputStream(args[1])));
+            Solver.climb_limit = Integer.parseInt(args[1]);
+        }
+        if (args.length > 2) {
+            currentAnswer = new BufferedReader(new InputStreamReader(new FileInputStream(args[2])));
         }
         reader = new BufferedReader(new InputStreamReader(new FileInputStream("in.txt")));
         writer = new PrintWriter("out.txt");
@@ -99,6 +102,7 @@ public class Main {
     static void banana() throws IOException {
         long start = System.currentTimeMillis();
         int t = nextInt();
+        //t = 1;
         for (int tst = 1; tst <= t; tst++) {
             writer.print("Case #" + tst + ": ");
             processTest("test" + tst);
